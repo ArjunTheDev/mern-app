@@ -1,7 +1,7 @@
 // frontend/src/App.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './Fruit.css'; // Import the CSS file
+import './Fruit.css';
 
 const Fruit = () => {
   const [fruits, setFruits] = useState([]);
@@ -9,14 +9,12 @@ const Fruit = () => {
 
   const baseURL = import.meta.env.VITE_APP_BASE_URL || 'http://localhost:5000';
 
-  // Fetch fruits from backend
   useEffect(() => {
     axios.get(`${baseURL}/api/fruits`)
       .then(res => setFruits(res.data))
       .catch(err => console.error(err));
   }, []);
 
-  // Add a new fruit
   const addFruit = () => {
     axios.post(`${baseURL}/api/fruits`, { name: newFruit })
       .then(res => setFruits([...fruits, res.data]))
@@ -24,7 +22,6 @@ const Fruit = () => {
     setNewFruit('');
   };
 
-  // Delete a fruit
   const deleteFruit = (id) => {
     axios.delete(`${baseURL}/api/fruits/${id}`)
       .then(() => setFruits(fruits.filter(fruit => fruit._id !== id)))
