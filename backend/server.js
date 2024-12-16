@@ -14,7 +14,7 @@ app.use(cors({
 }));
 app.use(bodyParser.json());
 
-mongoose.connect('mongodb+srv://nujra0707:nujra070798@cluster0.rfq9a7b.mongodb.net/Fruits?retryWrites=true&w=majority&appName=Cluster0', {
+mongoose.connect(process.env.DATABASE_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 }).then(() => console.log('MongoDB Connected')).catch(err => console.log(err));
